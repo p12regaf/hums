@@ -1,0 +1,14 @@
+[Unit]
+Description=HUMS Vehicle Monitoring System
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/cosigein/hums_project/main.py
+WorkingDirectory=/home/cosigein/hums_project
+Restart=always
+User=cosigein
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
