@@ -1,6 +1,6 @@
 [Unit]
 Description=HUMS Vehicle Monitoring System
-After=network.target
+After=network.target graphical.target # Esperamos a que el entorno gráfico esté listo
 
 [Service]
 ExecStart=/usr/bin/python3 /home/cosigein/hums_project/main.py
@@ -10,5 +10,8 @@ User=cosigein
 StandardOutput=journal
 StandardError=journal
 
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/cosigein/.Xauthority
+
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target graphical.target
