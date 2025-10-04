@@ -35,9 +35,14 @@ def main():
 
 
 if __name__ == "__main__":
-    # Asegurarse de que el script se ejecuta como el usuario correcto si es necesario
-    # (Aunque esto es mejor gestionarlo con systemd)
-    if os.geteuid() == 0:
-        print("Advertencia: Se recomienda no ejecutar la aplicación principal como root.")
+    # Importar el config para acceder a la variable de plataforma
+    import config
+
+    # Esta comprobación de superusuario solo tiene sentido en sistemas tipo UNIX (Linux)
+    if config.IS_RASPBERRY_PI:
+        # Asegurarse de que el script se ejecuta como el usuario correcto si es necesario
+        # (Aunque esto es mejor gestionarlo con systemd)
+        if os.geteuid() == 0:
+            print("Advertencia: Se recomienda no ejecutar la aplicación principal como root.")
 
     main()

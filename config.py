@@ -1,5 +1,10 @@
 # ./config.py
 import os
+import sys
+
+# --- Detección de Plataforma ---
+# Esto nos permitirá cargar módulos reales en la Pi y mocks en Windows/Mac
+IS_RASPBERRY_PI = sys.platform.startswith('linux')
 
 # --- Rutas del Proyecto ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -39,3 +44,4 @@ def setup_directories():
     for path in [DATA_DIR, CAN_LOG_DIR, CSV_EXPORTS_DIR, IMU_GPS_LOG_DIR, SYSTEM_LOG_DIR]:
         os.makedirs(path, exist_ok=True)
     print("Estructura de directorios lista.")
+
